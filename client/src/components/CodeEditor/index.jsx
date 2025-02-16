@@ -9,7 +9,7 @@ import {
     Save,
     Download,
     Copy,
-    Trash2,
+    ChevronDown,
     RotateCcw,
     Layout,
     Monitor,
@@ -50,11 +50,11 @@ const CodeEditor = () => {
     };
 
     const languages = [
-        { value: 'javascript', label: 'JavaScript', icon: '⚡', code: 'console.log("Hello World"); ' },
-        { value: 'typescript', label: 'TypeScript', icon: '📘', code: 'console.log("Hello World"); ' },
-        { value: 'python', label: 'Python', icon: '🐍', code: 'print("Hello")' },
-        { value: 'cpp', label: 'C++', icon: '⚙️', code: '#include<bits/stdc++.h>\nusing namespace std;\n\nint main() {\n\tcout << "Hello World";\n}' },
-        { value: 'java', label: 'Java', icon: '☕', code: 'class Main {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println("Hello World");\n\t}\n}' }
+        { value: 'javascript', extension: 'js', label: 'JavaScript', icon: '⚡', code: 'console.log("Hello World"); ' },
+        { value: 'typescript', extension: 'ts', label: 'TypeScript', icon: '📘', code: 'console.log("Hello World"); ' },
+        { value: 'python', extension: 'py', label: 'Python', icon: '🐍', code: 'print("Hello")' },
+        { value: 'cpp', extension: 'cpp', label: 'C++', icon: '⚙️', code: '#include<bits/stdc++.h>\nusing namespace std;\n\nint main() {\n\tcout << "Hello World";\n}' },
+        { value: 'java', extension: 'java', label: 'Java', icon: '☕', code: 'class Main {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println("Hello World");\n\t}\n}' }
     ];
 
     const saveCode = () => {
@@ -108,6 +108,9 @@ const CodeEditor = () => {
                             >
                                 {languages.find(lang => lang.value === language)?.icon}
                                 {languages.find(lang => lang.value === language)?.label}
+                                <div className={`transition-all ${isLanguageDropdownOpen && 'rotate-180'}`}>
+                                    <ChevronDown />
+                                </div>
                             </button>
 
                             {isLanguageDropdownOpen && (
@@ -194,7 +197,7 @@ const CodeEditor = () => {
                         </div>
                         <div className="space-y-2 text-sm">
                             <div className="flex items-center gap-2 p-2 hover:bg-gray-700 rounded cursor-pointer">
-                                📄 index.{language}
+                                📄 main.{languages.find(lang => lang.value === language).extension}
                             </div>
                             <div className="flex items-center gap-2 p-2 hover:bg-gray-700 rounded cursor-pointer">
                                 📄 README.md
