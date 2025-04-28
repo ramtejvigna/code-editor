@@ -2,7 +2,7 @@
 # FROM ubuntu:latest
 
 # # Install required languages
-# RUN apt update && apt install -y \
+# RUN apt-get update && apt-get install -y docker.io \
 #     python3 python3-pip \
 #     nodejs npm \
 #     g++ openjdk-17-jdk \
