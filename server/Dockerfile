@@ -1,27 +1,27 @@
-# # Base Image
-# FROM ubuntu:latest
+FROM node:18-alpine
 
-# # Install required languages
-# RUN apt-get update && apt-get install -y docker.io \
-#     python3 python3-pip \
-#     nodejs npm \
-#     g++ openjdk-17-jdk \
-#     && apt clean
+WORKDIR /app
 
-# # Set working directory
-# WORKDIR /sandbox
+# Install dependencies for code execution
+RUN apk add --no-cache python3 g++ openjdk17 bash
 
-# # Default command
-# CMD ["/bin/bash"]
+# Install TypeScript globally for ts-node
+RUN npm install -g typescript ts-node
 
-# Use the existing code-sandbox image as the base
-FROM code-sandbox
+# Install dependencies first for better caching
+COPY package*.json ./
+RUN npm install --production
 
-WORKDIR /sandbox
+# Copy the rest of the files
+COPY . .
 
-COPY . /sandbox
+# Create directory for code execution
+RUN mkdir -p /app/code
+RUN chmod 777 /app/code
 
-RUN if [ -f "package.json" ]; then npm install; fi
+# Ensure proper permissions
+RUN chown -R node:node /app
+USER node
 
 EXPOSE 5000
 

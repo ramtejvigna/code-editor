@@ -7,7 +7,11 @@ import executeRoutes from "./routes/executeRoutes.js"
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:80', 'http://localhost:3000', 'http://localhost:5173'],
+    methods: ['GET', 'POST'],
+    credentials: true
+}));
 app.use(express.json());
 
 const __filename = fileURLToPath(import.meta.url);
@@ -18,8 +22,12 @@ export const CODE_DIR = path.join(__dirname, "code");
 if(!fs.existsSync(CODE_DIR))
     fs.mkdirSync(CODE_DIR)
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok' });
+});
 
-app.use('/', executeRoutes);
+app.use('/api', executeRoutes);
 
 app.listen(5000, () => {
     console.log(`Server running on port 5000`);
