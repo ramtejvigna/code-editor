@@ -50,7 +50,7 @@ const CodeEditor = () => {
       })
       setOutput(response.data.output)
     } catch (error) {
-      setOutput(`Error: ${error.response?.data?.error || error.message}`)
+      setOutput(`Error: ${error?.response?.data?.output}`)
     } finally {
       setIsLoading(false)
     }
@@ -253,7 +253,7 @@ const CodeEditor = () => {
                 <div className="flex items-center gap-2">
                   <Code2 className="w-4 h-4 text-emerald-400" />
                   <span className="text-sm font-medium">
-                    main.{languages.find((lang) => lang.value === language)?.extension}
+                    Main.{languages.find((lang) => lang.value === language)?.extension}
                   </span>
                 </div>
                 <div className="ml-auto flex gap-2">
