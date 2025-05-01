@@ -2,8 +2,11 @@
 
 A modern, web-based integrated development environment (IDE) that supports multiple programming languages. DevSphere IDE provides a seamless coding experience with real-time code execution capabilities.
 
-![DevSphere IDE View](public_images/view.png)
+### Successful compilation
 ![DevSphere IDE Additional View](public_images/view2.png)
+
+### Compilation errors
+![DevSphere IDE View](public_images/view.png)
 
 ## Features
 
