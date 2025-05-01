@@ -7,9 +7,9 @@
     "start": "nodemon server.js"
   },
   "type": "module",
-  "author": "",
+  "author": "Vigna Ramtej",
   "license": "ISC",
-  "description": "",
+  "description": "DevSphere is a application that helps programmers to practice coding online.",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2",
