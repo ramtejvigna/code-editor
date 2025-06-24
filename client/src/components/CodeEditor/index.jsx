@@ -43,7 +43,7 @@ const CodeEditor = () => {
     setIsLoading(true)
     setOutput("Running...")
     try {
-      const response = await axios.post("http://localhost:5000/api/execute", {
+      const response = await axios.post("https://code-editor-5ua9.onrender.com/api/execute", {
         language,
         code,
         input,
