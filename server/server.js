@@ -8,7 +8,7 @@ import executeRoutes from "./routes/executeRoutes.js"
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:80', 'http://localhost:3000', 'http://localhost:5173'],
+    origin: ['http://localhost:80', 'http://localhost:3000', 'http://localhost:5173', 'https://code-editor-sigma-woad.vercel.app'],
     methods: ['GET', 'POST'],
     credentials: true
 }));
