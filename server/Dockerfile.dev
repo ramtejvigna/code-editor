@@ -2,9 +2,8 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Install Docker CLI and runtime dependencies for code execution
+# Install runtime dependencies for code execution (without Docker CLI)
 RUN apk add --no-cache \
-    docker-cli \
     python3 \
     py3-pip \
     openjdk11-jdk \
@@ -24,9 +23,6 @@ RUN npm ci --only=production
 # Copy source code
 COPY . .
 
-# Make entrypoint script executable
-RUN chmod +x /app/entrypoint.sh
-
 # Create directory for temporary code files
 RUN mkdir -p /app/code && chmod 777 /app/code
 
@@ -36,8 +32,7 @@ ENV PATH=$PATH:$JAVA_HOME/bin
 
 EXPOSE 5000
 
-# Run as root to access Docker socket (in containerized environment)
-# This is safe since we're running in a container
-USER root
+# Use node user for security
+USER node
 
-CMD ["/app/entrypoint.sh"]
+CMD ["npm", "start"]

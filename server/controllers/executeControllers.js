@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { exec } from "child_process";
 import { CODE_DIR } from "../server.js";
+import { executeInDocker } from "../services/dockerExecutor.js";
 
 const languages = {
     python: {
@@ -27,13 +28,38 @@ const languages = {
     }
 };
 
-export const execution = (req, res) => {
+export const execution = async (req, res) => {
     try {
         const { language, code, input } = req.body;
         
         if (!languages[language]) 
             return res.status(400).json({ error: "Unsupported language" });
 
+        // Use Docker execution for better security and isolation
+        const useDocker = process.env.USE_DOCKER !== 'false'; // Default to true
+        
+        if (useDocker) {
+            try {
+                const result = await executeInDocker(language, code, input);
+                
+                if (result.success) {
+                    return res.json({ 
+                        output: result.output,
+                        executionTime: result.executionTime 
+                    });
+                } else {
+                    return res.status(500).json({ 
+                        output: result.error,
+                        executionTime: result.executionTime 
+                    });
+                }
+            } catch (dockerError) {
+                console.error("Docker execution failed, falling back to local execution:", dockerError);
+                // Fall back to local execution if Docker fails
+            }
+        }
+
+        // Fallback to local execution (original implementation)
         const extension = languages[language].extension;
         const fileName = `main.${extension}`;
         const filePath = path.join(CODE_DIR, fileName);

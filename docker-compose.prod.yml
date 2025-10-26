@@ -1,16 +1,18 @@
+# Production Docker Compose
 services:
   client:
     build:
       context: ./client
       dockerfile: Dockerfile
     ports:
-      - "5173:80"
+      - "80:80"
     depends_on:
       - server
     networks:
       - app-network
     environment:
       - VITE_API_URL=http://localhost:5000
+    restart: unless-stopped
 
   server:
     build:
@@ -22,11 +24,17 @@ services:
       - app-network
     volumes:
       - code-volume:/app/code
-      - /var/run/docker.sock:/var/run/docker.sock  # Enable Docker-in-Docker
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - USE_DOCKER=true
       - NODE_ENV=production
-    privileged: true  # Required for Docker-in-Docker
+    privileged: true
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
 
 networks:
   app-network:

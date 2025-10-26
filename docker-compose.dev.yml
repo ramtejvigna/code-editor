@@ -1,3 +1,4 @@
+# Development Docker Compose (without Docker-in-Docker)
 services:
   client:
     build:
@@ -15,18 +16,16 @@ services:
   server:
     build:
       context: ./server
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     ports:
       - "5000:5000"
     networks:
       - app-network
     volumes:
       - code-volume:/app/code
-      - /var/run/docker.sock:/var/run/docker.sock  # Enable Docker-in-Docker
     environment:
-      - USE_DOCKER=true
-      - NODE_ENV=production
-    privileged: true  # Required for Docker-in-Docker
+      - USE_DOCKER=false  # Use local execution for development
+      - NODE_ENV=development
 
 networks:
   app-network:

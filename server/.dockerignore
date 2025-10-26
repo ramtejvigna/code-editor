@@ -1,0 +1,10 @@
+# Docker ignore patterns for server
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+.vscode
+*.log
+code/*
+.env
