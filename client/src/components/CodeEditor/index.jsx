@@ -148,7 +148,7 @@ const CodeEditor = () => {
               <Braces className="w-5 h-5 text-[#0f172a]" />
             </div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 text-transparent bg-clip-text">
-              DevSphere IDE
+              Code IDE
             </h1>
           </div>
           <div className="flex items-center gap-4">

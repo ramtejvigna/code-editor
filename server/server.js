@@ -12,7 +12,15 @@ const execAsync = promisify(exec);
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:80', 'http://localhost:3000', 'http://localhost:5173', 'https://code-editor-sigma-woad.vercel.app'],
+    origin: [
+        'http://localhost:80', 
+        'http://localhost:3000', 
+        'http://localhost:5173', 
+        'https://code-editor-sigma-woad.vercel.app',
+        'https://code-ide.ram-innovate.me',
+        /^https:\/\/.*\.cloudflareaccess\.com$/, // Cloudflare Access
+        /^https:\/\/.*\.pages\.dev$/ // Cloudflare Pages pattern
+    ],
     methods: ['GET', 'POST'],
     credentials: true
 }));
@@ -53,6 +61,10 @@ app.get('/health', async (req, res) => {
 
 app.use('/api', executeRoutes);
 
-app.listen(5000, () => {
-    console.log(`Server running on port 5000`);
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`Docker execution: ${process.env.USE_DOCKER === 'true' ? 'enabled' : 'disabled'}`);
 })

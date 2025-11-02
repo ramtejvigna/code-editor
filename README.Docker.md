@@ -1,8 +1,8 @@
-# DevSphere IDE - Docker Deployment Guide
+# Code IDE - Docker Deployment Guide
 
 ## Overview
 
-DevSphere IDE is a web-based code editor that supports multiple programming languages with secure containerized code execution. This guide covers Docker deployment for both development and production environments.
+Code IDE is a web-based code editor that supports multiple programming languages with secure containerized code execution. This guide covers Docker deployment for both development and production environments.
 
 ## Features
 
