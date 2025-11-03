@@ -1,6 +1,6 @@
 # Code IDE
 
-A modern, web-based integrated development environment (IDE) that supports multiple programming languages. Code IDE provides a seamless coding experience with real-time code execution capabilities.
+A modern integrated development environment (IDE) that supports multiple programming languages. Code IDE provides a seamless coding experience with real-time code execution capabilities.
 
 ### Successful compilation
 ![Code IDE Additional View](public_images/view2.png)
@@ -10,20 +10,20 @@ A modern, web-based integrated development environment (IDE) that supports multi
 
 ## Features
 
-- 🎨 **Beautiful Modern UI** - Clean and intuitive interface with a dark theme
-- 🌈 **Multi-language Support** - Write and execute code in:
+- **Modern UI** - Clean and intuitive interface with a dark theme
+- **Multi-language Support** - Write and execute code in:
   - JavaScript
   - TypeScript
   - Python
   - C++
   - Java
-- ⚡ **Real-time Code Execution** - Run your code instantly with Ctrl+Enter
-- 📝 **Input/Output Console** - Interactive console for program input and output
-- 🎯 **Quick Actions** - Save, copy, and reset code with a single click
-- 🌓 **Theme Toggle** - Switch between light and dark themes
-- ⚙️ **Customizable Settings** - Adjust font size and other editor preferences
-- ⌨️ **Keyboard Shortcuts** - Efficient coding with keyboard shortcuts
-- 💾 **Auto-save** - Keeps your code safe with automatic saving
+- **Real-time Code Execution** - Run your code instantly with Ctrl+Enter
+- **Input/Output Console** - Interactive console for program input and output
+- **Quick Actions** - Save, copy, and reset code with a single click
+- **Theme Toggle** - Switch between light and dark themes
+- **Customizable Settings** - Adjust font size and other editor preferences
+- **Keyboard Shortcuts** - Efficient coding with keyboard shortcuts
+- **Auto-save** - Keeps your code safe with automatic saving
 
 ## Technology Stack
 
